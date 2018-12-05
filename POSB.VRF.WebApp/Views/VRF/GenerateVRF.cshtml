@@ -1,0 +1,136 @@
+﻿@model POSB.VRF.Domain.Models.VisitorRequestForm
+@using CaptchaMvc.HtmlHelpers
+@using CaptchaMvc;
+@Html.ValidationSummary(excludePropertyErrors: true)
+
+@{
+    ViewBag.Title = "VRF Generate";
+}
+
+<div class="row">
+    <div class="col-md-4">
+@using (Html.BeginForm("GenerateVRF", "VRF", FormMethod.Post, new { encType = "multipart/form-data", id = "formGenerateVRF", name = "formGenerateVRF" }))
+{
+    @Html.AntiForgeryToken()
+    @*@Html.ValidationSummary()*@
+    
+    <fieldset class="form-horizontal">
+    <legend>Create a new VRF.</legend>
+    <div class="control-group">
+        @Html.LabelFor(m => m.VisitorName, new { @class = "control-label" })
+        <div class="controls">
+            @Html.TextBoxFor(m => m.VisitorName)
+        </div>
+    </div>
+    
+    <div class="control-group">
+        @Html.LabelFor(m => m.VisitorEmail, new { @class = "control-label" })
+        <div class="controls">
+            @Html.TextBoxFor(m => m.VisitorEmail)
+        </div>
+    </div>
+
+    <div class="control-group">
+        @Html.LabelFor(m => m.VisitorPhone, new { @class = "control-label" })
+        <div class="controls">
+            @Html.TextBoxFor(m => m.VisitorPhone)
+        </div>
+    </div>
+    
+    <div class="control-group">
+        @Html.LabelFor(m => m.VisitorCompany, new { @class = "control-label" })
+        <div class="controls">
+            @Html.TextBoxFor(m => m.VisitorCompany)
+        </div>
+    </div>
+    
+    <div class="control-group">
+        @Html.LabelFor(m => m.VisitorTypeId, new { @class = "control-label" })
+        <div class="controls">
+             @(Html.Kendo().DropDownListFor(x => x.VisitorTypeId)
+                                            .Name("VisitorTypeId")
+                                            .OptionLabel("Select Type")
+                                            .DataTextField("Description")
+                                            .DataValueField("Id")
+                                            .DataSource(source =>
+                                            {
+                                                source.Read(read =>
+                                                {
+                                                    read.Action("GetVisitorType", "VisitorType");
+                                                });
+                                            }))
+        </div>
+    </div>
+    
+    <div class="control-group">
+        @Html.LabelFor(m => m.VisitStartDate, new { @class = "control-label" })
+        <div class="controls">
+            @(Html.Kendo().DateTimePicker()
+            .Name("VisitStartDate")
+            .Value(DateTime.Now)
+            )
+        </div>
+    </div>
+    
+    <div class="control-group">
+        @Html.LabelFor(m => m.VisitEndDate, new { @class = "control-label" })
+        <div class="controls">
+            @(Html.Kendo().DateTimePicker()
+            .Name("VisitEndDate")
+            .Value(DateTime.Now)
+            )
+        </div>
+    </div>
+    
+    <div class="control-group">
+        @Html.LabelFor(m => m.VisitDestination, new { @class = "control-label" })
+        <div class="controls">
+            @Html.TextAreaFor(m => m.VisitDestination)
+        </div>
+    </div>
+
+    <div class="control-group">
+        @Html.LabelFor(m => m.VisitPurpose, new { @class = "control-label" })
+        <div class="controls">
+            @Html.TextAreaFor(m => m.VisitPurpose)
+        </div>
+    </div>
+    
+    <div class="control-group">
+        @Html.LabelFor(m => m.VisitorIDUpload, new { @class = "control-label" })
+        <div class="controls">
+            <div class="demo-section k-content">
+                @(Html.Kendo().Upload()
+                    .Name("files")
+                    .HtmlAttributes(new { aria_label = "Upload Id" })
+                    .Multiple(false)
+                )
+                
+            </div>
+        </div>
+    </div>
+
+    <br />
+        @Html.Captcha(5)
+        <p> @Html.Raw(ErrorHelper.PrintErrorMessage) </p>
+    <br />
+
+    <div class="form-actions no-color">
+            <input type="submit" value="Submit Form" class="btn btn-lg btn-success btn-block" id="btnVRFSubmit"/>
+        </div> 
+    </fieldset> 
+}
+        </div>
+
+    <div class="col-md-4">
+        </div>
+    <div class="col-md-4">
+        </div>
+</div>
+
+@section scripts
+{
+<script type="text/javascript" src="~/Scripts/app/vrf.generate.js"></script>
+}
+
+

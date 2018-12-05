@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2F40B60F-578C-4EBF-822B-EED9551A3B7F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>POSB.VRF.Data</RootNamespace>
+    <AssemblyName>POSB.VRF.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EntityConfigurations\PermissionConfiguration.cs" />
+    <Compile Include="EntityConfigurations\RoleConfiguration.cs" />
+    <Compile Include="EntityConfigurations\UserConfiguration.cs" />
+    <Compile Include="EntityConfigurations\VisitorRequestFormConfiguration.cs" />
+    <Compile Include="EntityConfigurations\VisitorTypeConfiguration.cs" />
+    <Compile Include="Migrations\201811080936008_FirstCreate.cs" />
+    <Compile Include="Migrations\201811080936008_FirstCreate.Designer.cs">
+      <DependentUpon>201811080936008_FirstCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811120850183_updatefieldVisitor.cs" />
+    <Compile Include="Migrations\201811120850183_updatefieldVisitor.Designer.cs">
+      <DependentUpon>201811120850183_updatefieldVisitor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811150621468_update-database.cs" />
+    <Compile Include="Migrations\201811150621468_update-database.Designer.cs">
+      <DependentUpon>201811150621468_update-database.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811150902564_update-vrf-table.cs" />
+    <Compile Include="Migrations\201811150902564_update-vrf-table.Designer.cs">
+      <DependentUpon>201811150902564_update-vrf-table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811160204417_update-table-vrf.cs" />
+    <Compile Include="Migrations\201811160204417_update-table-vrf.Designer.cs">
+      <DependentUpon>201811160204417_update-table-vrf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811160713088_Add-field-VisitorForm.cs" />
+    <Compile Include="Migrations\201811160713088_Add-field-VisitorForm.Designer.cs">
+      <DependentUpon>201811160713088_Add-field-VisitorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811190352152_add-VRF-field.cs" />
+    <Compile Include="Migrations\201811190352152_add-VRF-field.Designer.cs">
+      <DependentUpon>201811190352152_add-VRF-field.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811210928455_Update-RolePermission.cs" />
+    <Compile Include="Migrations\201811210928455_Update-RolePermission.Designer.cs">
+      <DependentUpon>201811210928455_Update-RolePermission.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811220848591_UpdateRoleTable.cs" />
+    <Compile Include="Migrations\201811220848591_UpdateRoleTable.Designer.cs">
+      <DependentUpon>201811220848591_UpdateRoleTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\PermissionRepository.cs" />
+    <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\RoleRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Repositories\VisitorRequestFormRepository.cs" />
+    <Compile Include="Repositories\VisitorTypeRepository.cs" />
+    <Compile Include="UnitOfWork.cs" />
+    <Compile Include="VRFContext.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\POSB.VRF.Domain\POSB.VRF.Domain.csproj">
+      <Project>{929d3259-b626-425e-989c-948ab2b187eb}</Project>
+      <Name>POSB.VRF.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201811080936008_FirstCreate.resx">
+      <DependentUpon>201811080936008_FirstCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811120850183_updatefieldVisitor.resx">
+      <DependentUpon>201811120850183_updatefieldVisitor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811150621468_update-database.resx">
+      <DependentUpon>201811150621468_update-database.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811150902564_update-vrf-table.resx">
+      <DependentUpon>201811150902564_update-vrf-table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811160204417_update-table-vrf.resx">
+      <DependentUpon>201811160204417_update-table-vrf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811160713088_Add-field-VisitorForm.resx">
+      <DependentUpon>201811160713088_Add-field-VisitorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811190352152_add-VRF-field.resx">
+      <DependentUpon>201811190352152_add-VRF-field.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811210928455_Update-RolePermission.resx">
+      <DependentUpon>201811210928455_Update-RolePermission.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811220848591_UpdateRoleTable.resx">
+      <DependentUpon>201811220848591_UpdateRoleTable.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

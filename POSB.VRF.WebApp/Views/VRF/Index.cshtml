@@ -1,0 +1,45 @@
+﻿@model POSB.VRF.Domain.Models.VisitorRequestForm
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    @(Html.Kendo().Grid<POSB.VRF.Domain.Models.VisitorRequestForm>()
+                        .Name("CCUGrid")
+                        .HtmlAttributes(new { style = "width:100%;" })
+                        .Columns(columns =>
+                        {
+                            columns.Bound(o => o.Id).Visible(false);
+                            columns.Bound(o => o.VisitorName).Width(70).Locked(false);
+                            columns.Bound(o => o.VisitorPhone).Width(100).Locked(false);
+                            columns.Bound(o => o.VisitorEmail).Width(100).Locked(false);
+                            columns.Bound(o => o.VisitorTypeId).Width(10).Locked(false);
+                            
+                            columns.Bound(o => o.ModifiedBy).Width(100).Filterable(false);
+                            columns.Bound(o => o.ModifiedDate).ClientTemplate("#= kendo.toString(ModifiedDate, \"MM/dd/yyyy hh:mm tt\") #").Width(140).Filterable(false);    
+                                
+                        })
+                        .DataSource(dataSource => dataSource
+                            .Ajax()
+                            .Events(events => events.Error("error_handler"))
+                            .Model(model => model.Id(p => p.Id))
+                            .PageSize(15)
+                            .Read(read => read.Action("VRF_Read", "VRF"))
+                            //.Destroy("EditingInline_Destroy", "CCU")
+                            .Sort(x=>x.Add("ModifiedDate").Descending())
+                            )
+                            .ToolBar(toolbar => { toolbar.Excel(); })
+                            .Excel(excel => excel.FileName("VRFList_" + DateTime.Now.ToString() + ".xlsx").AllPages(true))
+                        .Scrollable(scrollable => { scrollable.Enabled(true); scrollable.Virtual(false); scrollable.Height("500"); })
+                        .Pageable()
+                        .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
+                        .Sortable()
+                        .Selectable(x => x.Enabled(false))
+                        .Events(e => e.DataBound("onRowBound")))
+</div>
+
+@section scripts
+{
+<script type="text/javascript" src="~/Scripts/app/vrf.index.js"></script>
+}

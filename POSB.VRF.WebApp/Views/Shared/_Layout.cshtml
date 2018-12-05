@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title - POSB.VRF</title>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    @Scripts.Render("~/bundles/jqueryjs")
+    @Styles.Render("~/Content/bootstrapcss")
+    @Styles.Render("~/Content/kendocss")
+    @Styles.Render("~/Content/toastr")
+    @Styles.Render("~/Content/starter")
+
+    
+
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+            <li class="active"><a href="@Url.Action("Index", "Home")" class="nav-link">Home</a></li>
+            <li><a href="@Url.Action("GenerateVRF", "VRF")" class="nav-link">Generate Form</a></li>
+            <li><a href="@Url.Action("Login", "Home")" class="nav-link">Login</a></li>
+              <li><a href="@Url.Action("LogOut", "Home")" class="nav-link">Logout</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+
+
+<div class="container">
+    @RenderBody()
+</div>
+
+<footer class="blog-footer">
+   <p class="led">&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+</footer>
+    
+    @Scripts.Render("~/bundles/bootstrapjs")
+    @Scripts.Render("~/bundles/kendojs")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/toastr")
+    
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>
+<script>
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-center",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }        
+    </script>

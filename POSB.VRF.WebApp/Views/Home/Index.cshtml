@@ -1,0 +1,33 @@
+﻿@model IEnumerable<POSB.VRF.Domain.Models.User>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+    <div class="span4">
+        <h2>Getting started</h2>
+        <p>@ViewBag.Message</p>
+    </div>
+
+    <table>
+        @foreach (var item in Model) {
+        <tr>
+            
+            <td>
+                Full Name :@Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                Title : @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                Email : @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                Login : @Html.DisplayFor(modelItem => item.Login)
+            </td>
+        </tr>
+    }
+</table>
+
+</div>
+

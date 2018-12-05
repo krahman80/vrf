@@ -1,0 +1,39 @@
+﻿@using System.Web.Mvc;
+@using System.Text;
+@functions {   
+
+    public static HtmlString PrintErrorMessage
+    {
+        get
+        {
+            StringBuilder htmlElement = new StringBuilder();
+            if (HttpContext.Current.Session != null)
+            {
+                List<string> errorMessage = (List<string>)HttpContext.Current.Session["GeneralErrorMessage"];
+                if (errorMessage != null && errorMessage.Count > 0)
+                {
+                    var content = string.Empty;
+                    foreach (var error in errorMessage)
+                    {
+                        content += string.Format("{0} * {1}{2}", error, "<br />", Environment.NewLine);
+                    }
+
+                    var spanTag = new TagBuilder("span");
+                    spanTag.MergeAttribute("class", "glyphicon glyphicon-exclamation-sign");
+                    spanTag.MergeAttribute("aria-hidden", "true");
+
+                    var divTag = new TagBuilder("div");
+                    //divTag.InnerHtml = spanTag.ToString(TagRenderMode.Normal);
+                    divTag.SetInnerText(content);
+                    divTag.MergeAttribute("class", "alert alert-danger");
+                    divTag.MergeAttribute("role", "alert");
+
+                    HttpContext.Current.Session["GeneralErrorMessage"] = new List<string>();
+                    return new HtmlString(HttpUtility.HtmlDecode(divTag.ToString(TagRenderMode.Normal)));
+                }
+            }
+            return new HtmlString(null);
+        }
+    }
+
+}
